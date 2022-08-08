@@ -20,8 +20,6 @@ function createCurrentForecast(){
     let weatherCurrentDiscription=JSON.parse(localStorage.getItem(city)).weather[0].description;
     let weatherCurrentIcon=JSON.parse(localStorage.getItem(city)).weather[0].icon;
     let weatherCurrentMain=JSON.parse(localStorage.getItem(city)).main;//object
-    let weatherCurrentSunrise=JSON.parse(localStorage.getItem(city)).sys.sunrise;
-    let weatherCurrentSunset=JSON.parse(localStorage.getItem(city)).sys.sunset;
 
 }
 
@@ -36,7 +34,8 @@ function createPreviousSearchBtn(){
 
 
 
-submitBtn.click(function(){ 
+submitBtn.click(function(event){
+    event.preventDefault();
     let city=$('#city').val();
     let state=$('#state-Code').val();
     let keyAPI='cda125b32a94084e8ae8c5922b57599d';
