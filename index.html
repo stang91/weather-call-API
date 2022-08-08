@@ -22,27 +22,28 @@
                 <h2>Search for a City:</h2>
                 <!-- search bar -->
                 <input type="serach" name="search-City" id="city" placeholder="Enter a City">
+                <input type="serach" name="search-State-Code" id="state-Code" placeholder="Enter the State Code">
                 <!-- search button -->
-                <input type="submit" value="search">
+                <input type="submit" value="search" id="submit">
                 <!-- css bot border  -->
             </div>
-            <div class="previousSearchedCity">
+            <div>
                 <!-- js previous searched cities buttons -->
-
+                <ul class="previousSearchedCity"></ul>
             </div>
         </aside>
     </div>
     <div class="row">
         <section class="currentWeather">
             <h2 class="selectedCityAndDate">city and date</h2>
-            <ol class="forecastCurrentWeatherList"></ol>
+            <ul class="forecastCurrentWeatherList"></ul>
         </section>
         <section class="forecastFutureWeather">
             <h3 class="forecastFutureDay">Day Forecast</h3>
             <div class="forecastFutureWheatherBlock">
                 <div class="forecastBlock">
                     <h4 class="futureDate"></h4>
-                    <ol class="forecastFutureWeatherList"></ol>
+                    <ul class="forecastFutureWeatherList"></ul>
                 </div>
             </div>
         </section>
@@ -54,5 +55,11 @@
 
 
     <!-- script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+    <script src="./assets/script.js"></script>
 </body>
 </html>

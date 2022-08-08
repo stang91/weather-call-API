@@ -13,3 +13,50 @@
 // WHEN I click on a city in the search history
 // THEN I am again presented with current and future conditions for that city
 
+let lat;
+let lon;
+let exclude;
+let city=$('#city').val();
+let state=$('#state-Code').val();
+let keyAPI='cda125b32a94084e8ae8c5922b57599d';
+let requestWeatherURL='http://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lon+'&appid='+keyAPI+'&units=imperial';
+let submitBtn=$('#submit');
+
+function createCurrentForecast(){
+    
+}
+
+function createFutureForecast(){
+
+}
+
+function createPreviousSearchBtn(){
+
+}
+
+submitBtn.click(function(){ 
+    let city=$('#city').val();
+    let state=$('#state-Code').val();
+    let requestLonLatURL='http://api.openweathermap.org/geo/1.0/direct?q='+city+','+state+',US&appid='+keyAPI;
+    fetch(requestLonLatURL, {
+        method: 'GET' //GET is the default.
+        })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            console.log(data);
+            lon=data.lon;
+            lat=data.lat;
+        });
+    // fetch(requestWeatherURL, {
+    //     method: 'GET', //GET is the default.
+    //     })
+    //     .then(function (response) {
+    //         return response.json();
+    //     })
+    //     .then(function (data1) {
+    //         console.log(data1);
+    //         localStorage.setItem(city,JSON.stringify(data));
+    //     });
+});
