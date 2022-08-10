@@ -3,79 +3,63 @@
 var keyAPI='cda125b32a94084e8ae8c5922b57599d';
 var submitBtn=$('#submit');
 var CurrentWeatherCityTitle= $('.selectedCityAndDate');
-var city=$('#city').val();//add toLowerCase() to eliminate error when searched with uppercase
-var state=$('#state-Code').val();
 
+var localStorageKeyArr=[];
 
-function createFutureForecast(){
-
-//forecast block
-//use nth child 8n+4 to get 
-//noon weather forecast
-
-//future Date title
-
-}
-
-function createPreviousSearchBtn(){
-    $('.previousSearchedCity').append($("<li></li>").addClass(city+'SearchBtn').val())=city;
-    $('.'+city+'SearchBtn').click(function(){
-
-    });
+for (var i=0; i<localStorage.length; i++){
+    $('.previousSearchedCity').append($("<li>"+localStorage.key(i)+"</li>").addClass(localStorage.key(i)+' SearchBtn'));
 }
 
 submitBtn.click(function(event){
     event.preventDefault();
-    let city1=$('#city').val().toLowerCase();//add toLowerCase() to eliminate error when searched with uppercase
-    let state1=$('#state-Code').val().toLowerCase();
-    let requestLonLatURL='http://api.openweathermap.org/geo/1.0/direct?q='+city1+','+state1+',US&appid='+keyAPI;
-    fetch(requestLonLatURL, {
-        method: 'GET'
-    })
-    .then(function (response) {
-        return response.json();
-    })
-    .then(function (data) {
-        localStorage.setItem(city1,JSON.stringify(data));
-    });
+    let city=$('#city').val().toLowerCase().trim();//add toLowerCase() to eliminate error when searched with uppercase
+    let state=$('#state-Code').val().toLowerCase().trim();
+    let requestLonLatURL='http://api.openweathermap.org/geo/1.0/direct?q='+city+','+state+',US&appid='+keyAPI;
+    if (city!=null){
+        fetch(requestLonLatURL, {
+            method: 'GET'
+        })
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            localStorage.setItem(city,JSON.stringify(data));
 
-    createPreviousSearchBtn();
+            var {lon, lat} = JSON.parse(localStorage.getItem(city))[0];
 
-    const lon=JSON.parse(localStorage.getItem(city1))[0].lon;
-    const lat=JSON.parse(localStorage.getItem(city1))[0].lat;
-    
-    let requestCurrentWeatherURL='http://api.openweathermap.org/data/2.5/weather?lat='+lat+'&lon='+lon+'&appid='+keyAPI+'&units=imperial';
-    fetch(requestCurrentWeatherURL, {
-        method: 'GET',
-    })
-    .then(function (response) {
-        return response.json();
-    })
-    .then(function (data1) {
-        localStorage.setItem(city1+'1',JSON.stringify(data1));
-    });
-//title, date and icon
-    let weatherCurrentIcon=JSON.parse(localStorage.getItem(city1)).weather[0].icon;
-    let iconURL = "http://openweathermap.org/img/w/"+weatherCurrentIcon+".png";
-    CurrentWeatherCityTitle.after($('<i></i>',{src:iconURL}));
-    $('.selectedCityAndDate').val()=city1+' ('+moment().format('L');
-   
-//weather discription
-    let weatherCurrentDiscription=JSON.parse(localStorage.getItem(city1)).weather[0].description;
-   
-   
-//weather list
-    let weatherCurrentMain=JSON.parse(localStorage.getItem(city1)).main;//object
-    
-    
-       let requestForecastWeatherURL='http://api.openweathermap.org/data/2.5/forecast?lat='+lat+'&lon='+lon+'&appid='+keyAPI+'&units=imperial';
-    fetch(requestForecastWeatherURL, {
-        method: 'GET'
-    }).then(function (response) {
-        return response.json();
-    }).then(function (data2) {
-        localStorage.setItem(city1+'2',JSON.stringify(data2));
-    
-    });
+        //some logic to prevent button to create copies of class
+            //create preivous search button
 
+            //window.onload?/document.ready?
+            let requestCurrentWeatherURL='http://api.openweathermap.org/data/2.5/onecall?lat='+lat+'&lon='+lon+'&exclude=minutely,hourly&appid='+keyAPI+'&units=imperial';
+            fetch(requestCurrentWeatherURL, {
+                method: 'GET',
+            })
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                localStorage.setItem(city,JSON.stringify(data));
+            
+            //alert
+
+
+            //current forecast
+                //title, date and icon
+                let weatherCurrentIcon=JSON.parse(localStorage.getItem(city)).current.weather[0].icon;
+
+                let iconURL = "http://openweathermap.org/img/w/"+weatherCurrentIcon+".png";
+                CurrentWeatherCityTitle.after($('<i></i>',{src:iconURL}));
+                $('.selectedCityAndDate').text(city+' ('+moment().format('L')+')');
+            
+                //weather discription
+                // let weatherCurrentDiscription=JSON.parse(localStorage.getItem(city1))current.weather[0].description;
+            
+            
+                //weather list
+                // let weatherCurrentMain=JSON.parse(localStorage.getItem(city1))current.main;//object
+
+            });
+        }); 
+    }
 });
