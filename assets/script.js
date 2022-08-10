@@ -41,16 +41,14 @@ submitBtn.click(function(event){
             .then(function (data) {
                 localStorage.setItem(city,JSON.stringify(data));
             
-            //alert
+            //alert?
 
 
             //current forecast
                 //title, date and icon
                 let weatherCurrentIcon=JSON.parse(localStorage.getItem(city)).current.weather[0].icon;
-
                 let iconURL = "http://openweathermap.org/img/w/"+weatherCurrentIcon+".png";
-                CurrentWeatherCityTitle.after($('<i></i>',{src:iconURL}));
-                $('.selectedCityAndDate').text(city+' ('+moment().format('L')+')');
+                $('.selectedCityAndDate').text(city+' ('+moment().format('L')+')').after($('<img src='+iconURL+'>'));
             
                 //weather discription
                 // let weatherCurrentDiscription=JSON.parse(localStorage.getItem(city1))current.weather[0].description;
