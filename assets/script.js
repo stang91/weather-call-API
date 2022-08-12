@@ -4,14 +4,17 @@ var keyAPI='cda125b32a94084e8ae8c5922b57599d';
 var submitBtn=$('#submit');
 var CurrentWeatherCityTitle= $('.selectedCityAndDate');
 
-var localStorageKeyArr=[];
-
 for (var i=0; i<localStorage.length; i++){
     $('.previousSearchedCity').append($("<li>"+localStorage.key(i)+"</li>").addClass(localStorage.key(i)+' SearchBtn'));
 }
 
 submitBtn.click(function(event){
     event.preventDefault();
+    $('.previousSearchedCity').empty();
+    $('.selectedCityAndDate').empty;
+    $('.forecastCurrentWeatherList').empty();
+    $('.image').remove();
+
     let city=$('#city').val().toLowerCase().trim();//add toLowerCase() to eliminate error when searched with uppercase
     let state=$('#state-Code').val().toLowerCase().trim();
     let requestLonLatURL='http://api.openweathermap.org/geo/1.0/direct?q='+city+','+state+',US&appid='+keyAPI;
@@ -26,11 +29,15 @@ submitBtn.click(function(event){
             localStorage.setItem(city,JSON.stringify(data));
 
             var {lon, lat} = JSON.parse(localStorage.getItem(city))[0];
-
+            
+            for (var i=0; i<localStorage.length; i++){
+                $('.previousSearchedCity').append($("<li>"+localStorage.key(i)+"</li>").addClass(localStorage.key(i)+' SearchBtn'));
+            }
         //some logic to prevent button to create copies of class
             //create preivous search button
 
             //window.onload?/document.ready?
+            //var  function
             let requestCurrentWeatherURL='http://api.openweathermap.org/data/2.5/onecall?lat='+lat+'&lon='+lon+'&exclude=minutely,hourly&appid='+keyAPI+'&units=imperial';
             fetch(requestCurrentWeatherURL, {
                 method: 'GET',
@@ -43,20 +50,38 @@ submitBtn.click(function(event){
             
             //alert?
 
-
             //current forecast
                 //title, date and icon
+                // $('.selectedCityAndDate').val()='';
                 let weatherCurrentIcon=JSON.parse(localStorage.getItem(city)).current.weather[0].icon;
                 let iconURL = "http://openweathermap.org/img/w/"+weatherCurrentIcon+".png";
-                $('.selectedCityAndDate').text(city+' ('+moment().format('L')+')').after($('<img src='+iconURL+'>'));
+                $('.selectedCityAndDate').text(city+' ('+moment().format('L')+')').after($('<img src='+iconURL+'>').addClass('image'));
             
                 //weather discription
-                // let weatherCurrentDiscription=JSON.parse(localStorage.getItem(city1))current.weather[0].description;
-            
-            
+                let weatherCurrentDiscription=JSON.parse(localStorage.getItem(city)).current.weather[0].description;
+                // $('.forecastCurrentWeatherList').val()='';
+                $('.forecastCurrentWeatherList').append($('<li>'+weatherCurrentDiscription+'</li>').addClass('currentDiscription'));
                 //weather list
-                // let weatherCurrentMain=JSON.parse(localStorage.getItem(city1))current.main;//object
-
+                // , the temperature, 
+                let weatherCurrentTemp=JSON.parse(localStorage.getItem(city)).current.temp;
+                $('.forecastCurrentWeatherList').append($('<li>'+'Temperature: '+weatherCurrentTemp+'°F'+'</li>').addClass('currentTemp'));
+                //the humidity,
+                let weatherCurrentHumid=JSON.parse(localStorage.getItem(city)).current.humidity;
+                $('.forecastCurrentWeatherList').append($('<li>'+'Humidity: '+weatherCurrentHumid+'%'+'</li>').addClass('currentHumid'));
+                // the wind speed, 
+                let weatherCurrentWindSpeed=JSON.parse(localStorage.getItem(city)).current.wind_speed;
+                $('.forecastCurrentWeatherList').append($('<li>'+'Wind Speed: '+weatherCurrentWindSpeed+' mph'+'</li>').addClass('currentWindSpeed'));
+                //and the UV index
+                let weatherCurrentUV=JSON.parse(localStorage.getItem(city)).current.uvi;
+                if (weatherCurrentUV<=2){
+                    $('.forecastCurrentWeatherList').append($('<li>'+'UV Index: '+weatherCurrentUV+'</li>').addClass('currentUV low'));
+                } else if(2<weatherCurrentUV<=5){
+                    $('.forecastCurrentWeatherList').append($('<li>'+'UV Index: '+weatherCurrentUV+'</li>').addClass('currentUV moderate'));
+                }else {
+                    $('.forecastCurrentWeatherList').append($('<li>'+'UV Index: '+weatherCurrentUV+'</li>').addClass('currentUV severe'));
+                }
+                //forecast days list
+                
             });
         }); 
     }
