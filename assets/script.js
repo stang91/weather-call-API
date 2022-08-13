@@ -11,8 +11,8 @@ for (var i=0; i<localStorage.length; i++){
 submitBtn.click(function(event){
     event.preventDefault();
     $('.previousSearchedCity').empty();
-    $('.selectedCityAndDate').empty;
-    $('.forecastCurrentWeatherList').empty();
+    $('.forecastFutureWheatherBlock').empty();    
+    // $('.forecastBlock').empty();
     $('.image').remove();
 
     let city=$('#city').val().toLowerCase().trim();//add toLowerCase() to eliminate error when searched with uppercase
@@ -33,7 +33,7 @@ submitBtn.click(function(event){
             for (var i=0; i<localStorage.length; i++){
                 $('.previousSearchedCity').append($("<li>"+localStorage.key(i)+"</li>").addClass(localStorage.key(i)+' SearchBtn'));
             }
-        //some logic to prevent button to create copies of class
+            //some logic to prevent button to create copies of class
             //create preivous search button
 
             //window.onload?/document.ready?
@@ -49,17 +49,17 @@ submitBtn.click(function(event){
                 localStorage.setItem(city,JSON.stringify(data));
             
             //alert?
-
-            //current forecast
+                //dailyList
+                //current forecast
+                $('.selectedCityAndDate').empty;
+                $('.forecastCurrentWeatherList').empty();
                 //title, date and icon
-                // $('.selectedCityAndDate').val()='';
                 let weatherCurrentIcon=JSON.parse(localStorage.getItem(city)).current.weather[0].icon;
                 let iconURL = "http://openweathermap.org/img/w/"+weatherCurrentIcon+".png";
                 $('.selectedCityAndDate').text(city+' ('+moment().format('L')+')').after($('<img src='+iconURL+'>').addClass('image'));
-            
+
                 //weather discription
                 let weatherCurrentDiscription=JSON.parse(localStorage.getItem(city)).current.weather[0].description;
-                // $('.forecastCurrentWeatherList').val()='';
                 $('.forecastCurrentWeatherList').append($('<li>'+weatherCurrentDiscription+'</li>').addClass('currentDiscription'));
                 //weather list
                 // , the temperature, 
@@ -80,9 +80,38 @@ submitBtn.click(function(event){
                 }else {
                     $('.forecastCurrentWeatherList').append($('<li>'+'UV Index: '+weatherCurrentUV+'</li>').addClass('currentUV severe'));
                 }
+
                 //forecast days list
-                
-            });
-        }); 
+                for (var i=1;i<6;i++){
+                    //clone forecastBlock
+                    let cloneForecastBlock= $('.forecastBlock').clone().addClass('forecastBlock'+i).removeClass('forecastBlock');
+                    $('.forecastFutureWeatherBlock').append(cloneForecastBlock);
+                    }
+                $('.forecastBlock').remove();
+                    //5-day forecast that displays the date,
+                    // an icon representation of weather conditions, 
+                $('.forecastFutureWeatherList').each(function(index){
+                    $(this).prop('id','forecastFutureWeatherList'+(index+1));
+                    $(this).siblings('.futureDate').prop('id','futureDate'+(index+1));
+                    });    
+                for (i=1;i<6;i++){
+                    let weather5DayForecastIcon = JSON.parse(localStorage.getItem(city)).daily[i].weather[0].icon;
+                    let forecaste5dayIconURL = "http://openweathermap.org/img/w/"+weather5DayForecastIcon+".png";
+                    $('#futureDate'+i).text('Day '+i).after($('<img src='+forecaste5dayIconURL+'>').addClass('image'));
+                    //weather list
+                    // , the temperature, 
+                    let weatherForecastMaxTemp=JSON.parse(localStorage.getItem(city)).daily[i].temp.max;
+                    $('#forecastFutureWeatherList'+i).append($('<li>'+'Max Temp: '+weatherForecastMaxTemp+'°F'+'</li>').addClass('forecastMaxTemp'));
+                    let weatherForecastMinTemp=JSON.parse(localStorage.getItem(city)).daily[i].temp.min;
+                    $('#forecastFutureWeatherList'+i).append($('<li>'+'Min Temp: '+weatherForecastMinTemp+'°F'+'</li>').addClass('forecastMinTemp'));
+                    //the humidity,
+                    let weatherForecastHumid=JSON.parse(localStorage.getItem(city)).daily[i].humidity;
+                    $('#forecastFutureWeatherList'+i).append($('<li>'+'Humidity: '+weatherForecastHumid+'%'+'</li>').addClass('currentHumid'));
+                    // the wind speed, 
+                    let weatherForecastWindSpeed=JSON.parse(localStorage.getItem(city)).daily[i].wind_speed;
+                    $('#forecastFutureWeatherList'+i).append($('<li>'+'Wind Speed: '+weatherForecastWindSpeed+' mph'+'</li>').addClass('currentWindSpeed'));                
+                }
+            }); 
+        });
     }
 });
