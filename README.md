@@ -16,7 +16,7 @@ I travel a lot, especially when I have to travel to meet my families.  I have fa
 
 ## Usage
 
-![alt weatherDashboardImg]()
+![alt weatherDashboardImg](./assets/image/screenshot/weatherdashboard-screenshot.gif)
 ## Credit
 Diarmuid Murphy helped me out with the fetch request.  I almost forgot that without his major contribute I wouldn't of figured out that it must be contained in the function.
 
