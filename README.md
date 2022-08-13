@@ -1,6 +1,6 @@
 # weather-call-API
 ## Discription
-
+I travel a lot, especially when I have to travel to meet my families.  I have family all over the US.  My parents are in Massachusetts, my brother is in Arizona, and while a bulk of my friends are in Philly.  I need to know how's the weather like during my trip to visit them.  So, I created an weather dashboard that display any US city's current weather, and its 5 days forecast.
 
 ## Table of Content
 
@@ -21,4 +21,4 @@
 I did everything myself.
 ## What-I-would-like-to-do-or-try
 
-I would like to clean it up a lot more but I just brute force it, and hard code almost everything.  I just wanted to finish this as quickly as possible so I can't spend more time on a group 
+I would like to clean it up a lot more but I just brute force it, and hard code almost everything.  I just wanted to finish this as quickly as possible so I can't spend more time the main project at hand.
