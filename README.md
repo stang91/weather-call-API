@@ -12,13 +12,13 @@ I travel a lot, especially when I have to travel to meet my families.  I have fa
 
 ## Installation
 
-[weatherDashboard]()
+[weatherDashboard](https://stang91.github.io/weather-call-API/)
 
 ## Usage
 
 ![alt weatherDashboardImg](./assets/image/screenshot/weatherdashboard-screenshot.gif)
 ## Credit
-Diarmuid Murphy helped me out with the fetch request.  I almost forgot that without his major contribute I wouldn't of figured out that it must be contained in the function.
+Diarmuid Murphy helped me out with the fetch request.  I almost forgot that without his major contribute I wouldn't of figured out that it must be contained in the fetch function.
 
 ## What-I-would-like-to-do-or-try
 
