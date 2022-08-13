@@ -65,7 +65,7 @@ previousSearchedBtn.click(function(event){
         let forecaste5dayIconURL = "http://openweathermap.org/img/w/"+weather5DayForecastIcon+".png";
         //5-day forecast that displays the date
         $('#futureDate'+i).text(moment().add(i+1,'days').format('L')).after($('<img src='+forecaste5dayIconURL+'>').addClass('image'));
-        //weather list
+        //weather listt
         // the temperature
         let weatherForecastMaxTemp=JSON.parse(localStorage.getItem(city)).daily[i].temp.max;
         $('#forecastFutureWeatherList'+i).append($('<li>'+'Max Temp: '+weatherForecastMaxTemp+'°F'+'</li>').addClass('forecastMaxTemp'));
@@ -163,17 +163,18 @@ submitBtn.click(function(event){
                     $('#forecastFutureWeatherList'+i).empty();
                     let weather5DayForecastIcon = JSON.parse(localStorage.getItem(city)).daily[i].weather[0].icon;
                     let forecaste5dayIconURL = "http://openweathermap.org/img/w/"+weather5DayForecastIcon+".png";
+                    //5-day forecast that displays the date
                     $('#futureDate'+i).text(moment().add(i+1,'days').format('L')).after($('<img src='+forecaste5dayIconURL+'>').addClass('image'));
                     //weather list
-                    // , the temperature, 
+                    // the temperature
                     let weatherForecastMaxTemp=JSON.parse(localStorage.getItem(city)).daily[i].temp.max;
                     $('#forecastFutureWeatherList'+i).append($('<li>'+'Max Temp: '+weatherForecastMaxTemp+'°F'+'</li>').addClass('forecastMaxTemp'));
                     let weatherForecastMinTemp=JSON.parse(localStorage.getItem(city)).daily[i].temp.min;
                     $('#forecastFutureWeatherList'+i).append($('<li>'+'Min Temp: '+weatherForecastMinTemp+'°F'+'</li>').addClass('forecastMinTemp'));
-                    //the humidity,
+                    //the humidity
                     let weatherForecastHumid=JSON.parse(localStorage.getItem(city)).daily[i].humidity;
                     $('#forecastFutureWeatherList'+i).append($('<li>'+'Humidity: '+weatherForecastHumid+'%'+'</li>').addClass('currentHumid'));
-                    // the wind speed, 
+                    // the wind speed 
                     let weatherForecastWindSpeed=JSON.parse(localStorage.getItem(city)).daily[i].wind_speed;
                     $('#forecastFutureWeatherList'+i).append($('<li>'+'Wind Speed: '+weatherForecastWindSpeed+' mph'+'</li>').addClass('currentWindSpeed'));                
                 }
@@ -217,7 +218,7 @@ submitBtn.click(function(event){
                     }
                 
                     //forecast days list
-                    for (var i=1;i<6;i++){
+                    for (var i=0;i<5;i++){
                         //clone forecastBlock
                         let cloneForecastBlock= $('.forecastBlock').clone().addClass('col-12 col-sm-6 col-md-4 col-lg-4 forecastBlock'+i).removeClass('forecastBlock');
                         $('.forecastFutureWeatherBlock').append(cloneForecastBlock);
@@ -227,7 +228,7 @@ submitBtn.click(function(event){
                         $(this).prop('id','forecastFutureWeatherList'+(index));
                         $(this).siblings('.futureDate').prop('id','futureDate'+(index));
                     });    
-                    for (i=1;i<6;i++){
+                    for (i=0;i<5;i++){
                         $('#forecastFutureWeatherList'+i).empty();
                         // an icon representation of weather conditions, 
                         let weather5DayForecastIcon = JSON.parse(localStorage.getItem(city)).daily[i].weather[0].icon;
