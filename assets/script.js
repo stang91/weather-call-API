@@ -5,7 +5,7 @@ var submitBtn=$('#submit');
 var CurrentWeatherCityTitle= $('.selectedCityAndDate');
 
 for (var i=0; i<localStorage.length; i++){
-    $('.previousSearchedCity').append($("<li>"+localStorage.key(i)+"</li>").addClass(localStorage.key(i)+' SearchBtn'));
+    $('.previousSearchedCity').append($("<li>"+localStorage.key(i)+"</li>").addClass(localStorage.key(i)+' d-flex justify-content-center SearchBtn'));
 }
 
 var previousSearchedBtn=$('.SearchBtn');
@@ -62,7 +62,7 @@ previousSearchedBtn.click(function(event){
                     $('#forecastFutureWeatherList'+i).empty();
                     let weather5DayForecastIcon = JSON.parse(localStorage.getItem(city)).daily[i].weather[0].icon;
                     let forecaste5dayIconURL = "http://openweathermap.org/img/w/"+weather5DayForecastIcon+".png";
-                    $('#futureDate'+i).text('Day '+i).after($('<img src='+forecaste5dayIconURL+'>').addClass('image'));
+                    $('#futureDate'+i).text(moment().add(i,'days').format('L')).after($('<img src='+forecaste5dayIconURL+'>').addClass('image'));
                     //weather list
                     // , the temperature, 
                     let weatherForecastMaxTemp=JSON.parse(localStorage.getItem(city)).daily[i].temp.max;

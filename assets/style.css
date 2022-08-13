@@ -1,0 +1,83 @@
+body{
+    background: linear-gradient(to right top, #000000, #27151e, #44243d, #5b3664, #684d92, #6166b5, #4d80d5, #009bf3, #00b6fd, #00cffe, #00e6f9, #5ffbf1);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.header{
+    border-bottom: .5rem black solid;
+    margin-bottom: 1rem;
+}
+.header,header{
+    background-color: blue;
+    color:white;
+}
+
+h2,h3{
+    background-color: blue;
+    color:white;
+    border: .25rem black solid;
+    border-radius: 3px;
+    padding: .25rem;
+    margin: .25rem;
+}
+
+.SearchBtn, .selectedCityAndDate{
+text-transform: capitalize;
+}
+
+
+li{
+    list-style: none;
+}
+.previousSearchedCity,.forecastCurrentWeatherList,.forecastFutureWeatherList{
+    padding:0;
+}
+.forecastCurrentWeatherList{
+    color:whitesmoke;
+}
+.SearchBtn{
+    border: solid black 1px;
+    background-color: gray;
+    color: whitesmoke;
+    border-radius: 3px;
+    padding: .25rem;
+    margin: .25rem;
+}
+
+input{
+    margin:.25rem;
+}
+
+.forecastBlock1,.forecastBlock2,.forecastBlock3,.forecastBlock4,.forecastBlock5{
+    background-color: lightblue;
+    border: solid black 1px;
+    margin: .25rem;
+    padding: 1rem;
+}
+.low{
+    border:solid black 1px;
+    border-radius: 3px;
+    background-color: green;
+    width: fit-content;
+    margin: .25rem;
+    margin-left:0;
+    padding: .25rem;
+}
+.moderate{
+    border:solid black 1px;
+    border-radius: 3px;
+    background-color: rgb(152, 152, 7);
+    width: fit-content;
+    margin: .25rem;
+    margin-left:0;
+    padding: .25rem;
+}
+.severe{
+    border:solid black 1px;
+    border-radius: 3px;
+    background-color: red;
+    width: fit-content;
+    margin: .25rem;
+    margin-left:0;
+    padding: .25rem;
+}
