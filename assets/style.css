@@ -48,11 +48,10 @@ input{
     margin:.25rem;
 }
 
-.forecastBlock1,.forecastBlock2,.forecastBlock3,.forecastBlock4,.forecastBlock5{
+.forecastBlock0,.forecastBlock1,.forecastBlock2,.forecastBlock3,.forecastBlock4{
     background-color: lightblue;
     border: solid black 1px;
-    margin: .25rem;
-    padding: 1rem;
+    padding: 1px;
 }
 .low{
     border:solid black 1px;

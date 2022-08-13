@@ -46,9 +46,9 @@ previousSearchedBtn.click(function(event){
     }
 
     //forecast days list
-    for (var i=1;i<6;i++){
+    for (var i=0;i<5;i++){
         //clone forecastBlock
-        let cloneForecastBlock= $('.forecastBlock').clone().addClass('col-sm-6 col-md-6 col-lg-3 forecastBlock'+i).removeClass('forecastBlock');
+        let cloneForecastBlock= $('.forecastBlock').clone().addClass('col-12 col-sm-12 col-md-6 col-lg-4 forecastBlock'+i).removeClass('forecastBlock');
         $('.forecastFutureWeatherBlock').append(cloneForecastBlock);
         }
     $('.forecastBlock').remove();
@@ -140,19 +140,18 @@ submitBtn.click(function(event){
                 }
             
                 //forecast days list
-                for (var i=1;i<6;i++){
+                for (var i=0;i<5;i++){
                     //clone forecastBlock
-                    let cloneForecastBlock= $('.forecastBlock').clone().addClass('col-sm-6 col-md-6 col-lg-3 forecastBlock'+i).removeClass('forecastBlock');
+                    let cloneForecastBlock= $('.forecastBlock').clone().addClass('col-12 col-sm-12 col-md-6 col-lg-4 forecastBlock'+i).removeClass('forecastBlock');
                     $('.forecastFutureWeatherBlock').append(cloneForecastBlock);
                     }
-                $('.forecastBlock').remove();
                     //5-day forecast that displays the date,
                     // an icon representation of weather conditions, 
                 $('.forecastFutureWeatherList').each(function(index){
                     $(this).prop('id','forecastFutureWeatherList'+(index+1));
                     $(this).siblings('.futureDate').prop('id','futureDate'+(index+1));
                     });    
-                for (i=1;i<6;i++){
+                for (i=0;i<5;i++){
                     $('#forecastFutureWeatherList'+i).empty();
                     let weather5DayForecastIcon = JSON.parse(localStorage.getItem(city)).daily[i].weather[0].icon;
                     let forecaste5dayIconURL = "http://openweathermap.org/img/w/"+weather5DayForecastIcon+".png";
@@ -220,19 +219,18 @@ submitBtn.click(function(event){
                 }
 
                 //forecast days list
-                for (var i=1;i<6;i++){
+                for (var i=0;i<5;i++){
                     //clone forecastBlock
-                    let cloneForecastBlock= $('.forecastBlock').clone().addClass('col-sm-6 col-md-6 col-lg-3 forecastBlock'+i).removeClass('forecastBlock');
+                    let cloneForecastBlock= $('.forecastBlock').clone().addClass('col-12 col-sm-12 col-md-6 col-lg-4 forecastBlock'+i).removeClass('forecastBlock');
                     $('.forecastFutureWeatherBlock').append(cloneForecastBlock);
                     }
-                $('.forecastBlock').remove();
                     //5-day forecast that displays the date,
                     // an icon representation of weather conditions, 
                 $('.forecastFutureWeatherList').each(function(index){
                     $(this).prop('id','forecastFutureWeatherList'+(index+1));
                     $(this).siblings('.futureDate').prop('id','futureDate'+(index+1));
                     });    
-                for (i=1;i<6;i++){
+                for (i=0;i<5;i++){
                     $('#forecastFutureWeatherList'+i).empty();
                     let weather5DayForecastIcon = JSON.parse(localStorage.getItem(city)).daily[i].weather[0].icon;
                     let forecaste5dayIconURL = "http://openweathermap.org/img/w/"+weather5DayForecastIcon+".png";
