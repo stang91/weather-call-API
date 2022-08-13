@@ -21,4 +21,6 @@ I travel a lot, especially when I have to travel to meet my families.  I have fa
 I did everything myself.
 ## What-I-would-like-to-do-or-try
 
-I would like to clean it up a lot more but I just brute force it, and hard code almost everything.  I just wanted to finish this as quickly as possible so I can't spend more time the main project at hand.
+I wouldn't say this is this is the best code. I would like to clean it up a lot more but I just brute force it, and hard code almost everything.  I just wanted to finish this as quickly as possible so I can't spend more time on the main project at hand.
+
+if I have time I would love to clean it up a lot more.
