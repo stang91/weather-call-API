@@ -21,7 +21,7 @@ previousSearchedBtn.click(function(event){
     //title, date and icon for current Weather
     let city=$(this).text();
     let weatherCurrentIcon=JSON.parse(localStorage.getItem(city)).current.weather[0].icon;
-    let iconURL = "http://openweathermap.org/img/w/"+weatherCurrentIcon+".png";
+    let iconURL = "https://openweathermap.org/img/w/"+weatherCurrentIcon+".png";
     $('.selectedCityAndDate').text(city+' ('+moment().format('L')+')').after($('<img src='+iconURL+'>').addClass('image'));
     //weather discription
     let weatherCurrentDiscription=JSON.parse(localStorage.getItem(city)).current.weather[0].description;
@@ -62,7 +62,7 @@ previousSearchedBtn.click(function(event){
         $('#forecastFutureWeatherList'+i).empty();
         // an icon representation of weather conditions
         let weather5DayForecastIcon = JSON.parse(localStorage.getItem(city)).daily[i].weather[0].icon;
-        let forecaste5dayIconURL = "http://openweathermap.org/img/w/"+weather5DayForecastIcon+".png";
+        let forecaste5dayIconURL = "https://openweathermap.org/img/w/"+weather5DayForecastIcon+".png";
         //5-day forecast that displays the date
         $('#futureDate'+i).text(moment().add(i+1,'days').format('L')).after($('<img src='+forecaste5dayIconURL+'>').addClass('image'));
         //weather listt
@@ -90,7 +90,7 @@ submitBtn.click(function(event){
     let city=$('#city').val().toLowerCase().trim();
     let state=$('#state-Code').val().toLowerCase().trim();
     //fetch request to get Lon and Lat of city
-    let requestLonLatURL='http://api.openweathermap.org/geo/1.0/direct?q='+city+','+state+',US&appid='+keyAPI;
+    let requestLonLatURL='https://api.openweathermap.org/geo/1.0/direct?q='+city+','+state+',US&appid='+keyAPI;
     if (city!=null){
         fetch(requestLonLatURL, {
             method: 'GET'
@@ -103,7 +103,7 @@ submitBtn.click(function(event){
 
             var {lon, lat} = JSON.parse(localStorage.getItem(city))[0];
 
-            let requestCurrentWeatherURL='http://api.openweathermap.org/data/2.5/onecall?lat='+lat+'&lon='+lon+'&exclude=minutely,hourly&appid='+keyAPI+'&units=imperial';
+            let requestCurrentWeatherURL='https://api.openweathermap.org/data/2.5/onecall?lat='+lat+'&lon='+lon+'&exclude=minutely,hourly&appid='+keyAPI+'&units=imperial';
             fetch(requestCurrentWeatherURL, {
                 method: 'GET',
             })
@@ -120,7 +120,7 @@ submitBtn.click(function(event){
                 $('.forecastCurrentWeatherList').empty();
                 //title, date and icon
                 let weatherCurrentIcon=JSON.parse(localStorage.getItem(city)).current.weather[0].icon;
-                let iconURL = "http://openweathermap.org/img/w/"+weatherCurrentIcon+".png";
+                let iconURL = "https://openweathermap.org/img/w/"+weatherCurrentIcon+".png";
                 $('.selectedCityAndDate').text(city+' ('+moment().format('L')+')').after($('<img src='+iconURL+'>').addClass('image'));
 
                 //weather discription
@@ -162,7 +162,7 @@ submitBtn.click(function(event){
                 for (i=0;i<5;i++){
                     $('#forecastFutureWeatherList'+i).empty();
                     let weather5DayForecastIcon = JSON.parse(localStorage.getItem(city)).daily[i].weather[0].icon;
-                    let forecaste5dayIconURL = "http://openweathermap.org/img/w/"+weather5DayForecastIcon+".png";
+                    let forecaste5dayIconURL = "https://openweathermap.org/img/w/"+weather5DayForecastIcon+".png";
                     //5-day forecast that displays the date
                     $('#futureDate'+i).text(moment().add(i+1,'days').format('L')).after($('<img src='+forecaste5dayIconURL+'>').addClass('image'));
                     //weather list
@@ -192,7 +192,7 @@ submitBtn.click(function(event){
                     let city=$(this).text();
                     //title, date and icon
                     let weatherCurrentIcon=JSON.parse(localStorage.getItem(city)).current.weather[0].icon;
-                    let iconURL = "http://openweathermap.org/img/w/"+weatherCurrentIcon+".png";
+                    let iconURL = "https://openweathermap.org/img/w/"+weatherCurrentIcon+".png";
                     $('.selectedCityAndDate').text(city+' ('+moment().format('L')+')').after($('<img src='+iconURL+'>').addClass('image'));
                     //weather discription
                     let weatherCurrentDiscription=JSON.parse(localStorage.getItem(city)).current.weather[0].description;
@@ -232,7 +232,7 @@ submitBtn.click(function(event){
                         $('#forecastFutureWeatherList'+i).empty();
                         // an icon representation of weather conditions, 
                         let weather5DayForecastIcon = JSON.parse(localStorage.getItem(city)).daily[i].weather[0].icon;
-                        let forecaste5dayIconURL = "http://openweathermap.org/img/w/"+weather5DayForecastIcon+".png";
+                        let forecaste5dayIconURL = "https://openweathermap.org/img/w/"+weather5DayForecastIcon+".png";
                         //5-day forecast that displays the date
                         $('#futureDate'+i).text(moment().add(i+1,'days').format('L')).after($('<img src='+forecaste5dayIconURL+'>').addClass('image'));
                         //weather list
